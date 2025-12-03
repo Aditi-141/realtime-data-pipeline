@@ -1,7 +1,7 @@
 import { Worker } from "bullmq";
 import { createClient } from "redis";
 import { Pool } from "pg";
-import { broadcast } from "./websocket.js";
+import { broadcast } from "./websocket-broadcast.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -55,7 +55,11 @@ new Worker(
 
     console.log("Saved to DB:", payload.value);
 
-    broadcast({ type: "NEW_RECORD", payload });
+await fetch("http://localhost:3000/api/broadcast", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ type: "NEW_RECORD", payload }),
+});
 
     console.log("WebSocket broadcast sent");
   },
