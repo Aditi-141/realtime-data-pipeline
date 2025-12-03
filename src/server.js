@@ -7,6 +7,8 @@ import { startWebSocket } from "./websocket.js";
 import { createClient } from "redis";
 import pkg from "pg";
 import * as dotenv from "dotenv";
+import queueRoutes from "./routes/queue.routes.js";
+
 dotenv.config();
 
 const { Pool } = pkg;
@@ -48,6 +50,7 @@ await redisClient.connect();
 app.use("/api", ingestRoutes);
 app.use("/api", statsRoutes);
 app.use("/api", historyRoutes);
+app.use("/api/queue", queueRoutes); 
 
 // WebSocket
 startWebSocket();

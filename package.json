@@ -8,6 +8,7 @@
     "worker": "node src/worker.js"
   },
   "dependencies": {
+    "axios": "^1.13.2",
     "bullmq": "^4.18.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",

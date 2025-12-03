@@ -18,9 +18,9 @@ const pool = new Pool({
 
 try {
   await pool.query("SELECT NOW()");
-  console.log("✅ Worker connected to PostgreSQL");
+  console.log("Worker connected to PostgreSQL");
 } catch (err) {
-  console.error("❌ Worker PostgreSQL error:", err.message);
+  console.error("Worker PostgreSQL error:", err.message);
 }
 
 // Redis connection
